@@ -69,17 +69,17 @@ f_4_remaining_30 = list()
 c_remaining_30 = list()
 
 for index in random_120_values_index :
-	f_1_random_120.append(f_1[index])
-	f_2_random_120.append(f_2[index])
-	f_3_random_120.append(f_3[index])
-	f_4_random_120.append(f_4[index])
+	f_1_random_120.append(f_1[index]/max(f_1))
+	f_2_random_120.append(f_2[index]/max(f_2))
+	f_3_random_120.append(f_3[index]/max(f_3))
+	f_4_random_120.append(f_4[index]/max(f_4))
 	c_random_120.append(c[index])
 
 for index in remaining_30_index :
-	f_1_remaining_30.append(f_1[index])
-	f_2_remaining_30.append(f_2[index])
-	f_3_remaining_30.append(f_3[index])	
-	f_4_remaining_30.append(f_4[index])
+	f_1_remaining_30.append(f_1[index]/max(f_1))
+	f_2_remaining_30.append(f_2[index]/max(f_2))
+	f_3_remaining_30.append(f_3[index]/max(f_3))	
+	f_4_remaining_30.append(f_4[index]/max(f_4))
 	c_remaining_30.append(c[index])
 """
 print(f_1)
