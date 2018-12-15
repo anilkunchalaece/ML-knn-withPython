@@ -53,7 +53,7 @@ classes = list()
 for feature in features :
         classes.append(feature[-1])
 classes = set(classes)
-print("no of classes are : " + str(len(classes)))
+# print("no of classes are : " + str(len(classes)))
 
 # create a dict with number of classes - class name as key and features list as value
 # calculate the mean also
@@ -82,17 +82,32 @@ for cla in classes :
 # print(featuresDict[1])
 
 # Predict the value based on minimum distance to mean algorithm
-currentFea = remaing_30[0]
-print(currentFea)
+# currentFea = remaing_30[0]
+# print(currentFea)
 # Calculate the equidian distance between current i.e test feature and mean values from training set
-meanED = list()
 import math
+allEDlist = list()
+for row in remaing_30 :
+        currentFea = row
+        meanED = list()
+        EDlist = list()
+        for key,values in featuresDict.items() :
+                d1 = values['mean'][0] - currentFea[0]
+                d2 = values['mean'][1] - currentFea[1] 
+                d3 = values['mean'][2] - currentFea[2]
+                d4 = values['mean'][3] - currentFea[3] 
+                ED = math.sqrt(d1*d1 + d2*d2 + d3*d3 + d4*d4)
+                EDlist.append((key,ED))
+        allEDlist.append([EDlist,currentFea[4]])
+cnt = 0
+for lst in allEDlist :
+        minValue = min(lst[0],key=lambda x:x[1])
+        #print(" min -> " + str(minValue) + " org-> " + str(lst[1]))
+        if(minValue[0] == lst[1]) :
+                cnt = cnt+1
 
-for key,values in featuresDict.items() :
-        d1 = values['mean'][0] - currentFea[0]
-        d2 = values['mean'][1] - currentFea[1] 
-        d3 = values['mean'][2] - currentFea[2]
-        d4 = values['mean'][3] - currentFea[3] 
-        ED = math.sqrt(d1*d1 + d2*d2 + d3*d3 + d4*d4)
-        meanED.append(ED)
-print(meanED.index(min(meanED)))
+accuracy = cnt / len(allEDlist)
+print("Total accuracy " + str(accuracy))
+
+        
+# printMatrix(allEDlist)
